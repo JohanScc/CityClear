@@ -13,12 +13,22 @@ exports.list_all_user = function(req, res) {
 };
 
 exports.create_a_user = function(req, res) {
-  var new_user = new Usuario(req.body);
-  new_user.save(function(err, usuario) {
+  var user;
+  Usuario.findOne({email:req.params.userId}, function(err, usuario) {
     if (err)
-      res.send(err);
-    res.json(usuario);
+      user = null;
+    user = usuario;
   });
+  if(user == null){
+  	res.send(0);
+  }else{
+	  var new_user = new Usuario(req.body);
+	  new_user.save(function(err, usuario) {
+	    if (err)
+	      res.send(err);
+	    res.json(usuario);
+	  });
+  }
 };
 
 
