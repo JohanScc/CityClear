@@ -13,23 +13,25 @@ exports.list_all_user = function(req, res) {
 };
 
 exports.create_a_user = function(req, res) {
-  var user = false;
+  /*var user = false;
   Usuario.findOne({email:req.body.email}, function(err, usuario) {
-    if (err)
+    if (err){
       user = false;
-  	else
+    }
+  	else{
       user = true;
+  	}
   });
   if(!user){
-  	res.send(null);
-  }else{
+  	res.send(0);
+  }else{*/
 	  var new_user = new Usuario(req.body);
 	  new_user.save(function(err, usuario) {
 	    if (err)
 	      res.send(err);
 	    res.json(usuario);
 	  });
-  }
+  //}
 };
 
 
