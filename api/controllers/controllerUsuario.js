@@ -13,8 +13,8 @@ exports.list_all_user = function(req, res) {
 };
 
 exports.create_a_user = function(req, res) {
-  /*var user = false;
-  Usuario.findOne({email:req.body.email}, function(err, usuario) {
+  var user = false;
+  Usuario.find({email:req.body.email}, function(err, usuario) {
     if (err){
       user = false;
     }
@@ -24,19 +24,19 @@ exports.create_a_user = function(req, res) {
   });
   if(!user){
   	res.send(0);
-  }else{*/
+  }else{
 	  var new_user = new Usuario(req.body);
 	  new_user.save(function(err, usuario) {
 	    if (err)
 	      res.send(err);
 	    res.json(usuario);
 	  });
-  //}
+  }
 };
 
 
 exports.validate_exist_user = function(req, res) {
-  Usuario.findOne({email:req.params.userId}, function(err, usuario) {
+  Usuario.find({email:req.params.userId, }, function(err, usuario) {
     if (err)
       res.send(err);
     res.json(usuario);
