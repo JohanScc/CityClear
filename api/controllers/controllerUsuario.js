@@ -23,7 +23,7 @@ exports.create_a_user = function(req, res) {
       user = true;
   	}
   });
-  if(!user){
+  if(user == false){
   	res.send('false');
   }else{
 	  var new_user = new Usuario(req.body);
