@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 var routes = require('./api/routes/routes'); //importing route
 routes(app); //register the route
-
+app.use(express.static(__dirname + '/public'));
 
 app.listen(port);
 

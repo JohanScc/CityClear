@@ -14,7 +14,7 @@ exports.list_all_user = function(req, res) {
 
 exports.create_a_user = function(req, res) {
   var user;
-  console.log(req.body.email);
+  //console.log(req.body.email);
   Usuario.find({email:req.body.email}, function(err, usuario) {
     if (err){
       user = false;

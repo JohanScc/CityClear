@@ -23,20 +23,52 @@ var TaskSchema = new Schema({
 module.exports = mongoose.model('Tasks', TaskSchema);
 
 var usuarioSchema = new Schema({
-  nombre: String,
-  email: String,
-  contrasenia: String
+  nombre: {
+      type: String,
+      required: true
+  },
+  email: {
+      type: String,
+      required: true
+  },
+  contrasenia:{
+      type: String,
+      required: true
+  }
 });
 module.exports = mongoose.model('Usuario', usuarioSchema);
 
 var reporteSchema = new Schema({
-  tipoReporte: String,
-  imagen: String,
-  latitud: String,
-  longitud: String,
+  tipoReporte: {
+      type: String,
+      required: true
+  },
+  imagen: {
+      type: String,
+      required: true
+  },
+  comentario: {
+      type: String,
+      required: true
+  },
+  latitud: {
+      type: String,
+      required: true
+  },
+  longitud: {
+      type: String,
+      required: true
+  },
   fecha: {
     type: Date,
     default: Date.now
+  },
+  status: {
+    type: [{
+      type: String,
+      enum: ['pending', 'ongoing', 'completed']
+    }],
+    default: ['pending']
   }
 });
 module.exports = mongoose.model('Reporte', reporteSchema);
