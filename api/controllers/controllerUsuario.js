@@ -14,13 +14,13 @@ exports.list_all_user = function(req, res) {
 
 exports.create_a_user = function(req, res) {
   var user;
-  Usuario.findOne({email:req.params.userId}, function(err, usuario) {
+  Usuario.findOne({email:req.body.email}, function(err, usuario) {
     if (err)
       user = null;
     user = usuario;
   });
   if(user == null){
-  	res.send(0);
+  	res.send(null);
   }else{
 	  var new_user = new Usuario(req.body);
 	  new_user.save(function(err, usuario) {
