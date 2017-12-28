@@ -7,7 +7,8 @@ var express = require('express'),
   
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/test', {
+//mongoose.connect('mongodb://localhost:27017/test', {
+mongoose.connect('mongodb://cityclear:cityclear@ds133557.mlab.com:33557/reportes', {
   useMongoClient: true,
   connectTimeoutMS: 1000
 });
