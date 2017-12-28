@@ -2,6 +2,7 @@
 module.exports = function(app) {
   var todoList = require('../controllers/controller');
   var reporteRoute = require('../controllers/controllerReportes');
+  var usuarioRoute = require('../controllers/controllerUsuario');
 
 
   // todoList Routes
@@ -25,6 +26,17 @@ module.exports = function(app) {
   app.route('/report/:reportId')
     .get(reporteRoute.read_a_report)
     .delete(reporteRoute.delete_a_report);
+    //.put(todoList.update_a_report)
+
+     // User Routes
+  app.route('/user')
+    .get(usuarioRoute.list_all_user)
+    .post(usuarioRoute.create_a_user);
+
+
+  app.route('/user/:userId')
+    .get(usuarioRoute.validate_exist_user)
+    .delete(usuarioRoute.delete_a_user);
     //.put(todoList.update_a_report)
 };
 
