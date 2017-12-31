@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 var routes = require('./api/routes/routes'); //importing route
 routes(app); //register the route
 app.use(express.static(__dirname + '/public'));
+/*
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -63,7 +64,7 @@ app.use(function(err, req, res, next) {
         message: err.message,
         error: {}
     });
-});
+});*/
 app.listen(port);
 
 app.use(function(req, res) {

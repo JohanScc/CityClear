@@ -20,6 +20,7 @@ module.exports = function(app) {
   // Report Routes
   app.route('/report')
     .get(reporteRoute.list_all_report)
+    .delete(reporteRoute.delete_all_report)
     .post(reporteRoute.create_a_report);
 
 

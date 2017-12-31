@@ -51,6 +51,7 @@
 function llenarReportes(){
   $.ajax({
     url: "http://cityclear.herokuapp.com/report",
+    //url: "http://localhost:3000/report",
     type: "GET",
     contentType: 'application/json; charset=utf-8',
     success: function(reportServer) {
@@ -68,20 +69,20 @@ function llenarReportes(){
           var status = myObj[i].status;
           var fecha = myObj[i].fecha;
           document.getElementById("newReport").innerHTML += "<tr>"+
-          "<td value='"+ i +"'>"+placa+"</td>"+
-          "<td value='"+ i +"'>"+placa+"</td>"+
-          "<td value='"+ i +"'>"+placa+"</td>"+
-          "<td value='"+ i +"'>"+placa+"</td>"+
-          "<td value='"+ i +"'>"+placa+"</td>"+
-          "<td value='"+ i +"'>"+placa+"</td>"+
-          "<td value='"+ i +"'>"+placa+"</td>"+
+          "<td value='"+ i +"'>"+tipoReporte+"</td>"+
+          "<td value='"+ i +"'>"+imagen+"</td>"+
+          "<td value='"+ i +"'>"+comentario+"</td>"+
+          "<td value='"+ i +"'>"+latitud+"</td>"+
+          "<td value='"+ i +"'>"+longitud+"</td>"+
+          "<td value='"+ i +"'>"+status+"</td>"+
+          "<td value='"+ i +"'>"+fecha+"</td>"+
           "</tr>"; 
 
 
       }   
     },
     error : function(jqXHR, textStatus, errorThrown) {
-      console.log("Error conexion server en llenarBuses");
+      console.log("Error conexion server");
     },
     timeout: 5000,
   });

@@ -49,3 +49,11 @@ exports.delete_a_report = function(req, res) {
     res.json({ message: 'Reporte successfully deleted' });
   });
 };
+
+exports.delete_all_report = function(req, res) {
+  Reporte.remove(function(err, reporte) {
+    if (err)
+      res.send(err);
+    res.json({ message: 'Reporte successfully deleted' });
+  });
+};
