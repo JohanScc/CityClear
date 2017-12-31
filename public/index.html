@@ -50,8 +50,8 @@
 <script>
 function llenarReportes(){
   $.ajax({
-    //url: "http://cityclear.herokuapp.com/report",
-    url: "http://localhost:3000/report",
+    url: "http://cityclear.herokuapp.com/report",
+    //url: "http://localhost:3000/report",
     type: "GET",
     contentType: 'application/json; charset=utf-8',
     success: function(reportServer) {
