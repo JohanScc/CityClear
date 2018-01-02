@@ -4,9 +4,10 @@
   <meta charset="utf-8">
    
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  
+  <link href="css/style.css" rel="stylesheet" type="text/css">
   <title>CityClear</title>
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 <body onload="llenarReportes();">
     <nav class="navbar navbar-inverse">
@@ -16,7 +17,7 @@
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Usuarios</a></li>
+          <li><a href="usuarios.html">Usuarios</a></li>
           <li><a href="#">Post</a></li>
           <li><a href="#">Administracion</a></li>
         </ul>
@@ -44,14 +45,21 @@
           <tbody id="newReport">
           </tbody>
         </table>
+
+        <div id="myModal" class="modal">
+          <span class="close">&times;</span>
+          <img height="400" class="modal-content" id="img01">
+          <div id="caption"></div>
+        </div>
     </div>
-    
+   
 
 <script>
+
 function llenarReportes(){
   $.ajax({
-    url: "http://cityclear.herokuapp.com/report",
-    //url: "http://localhost:3000/report",
+    //url: "http://cityclear.herokuapp.com/report",
+    url: "http://localhost:3000/report",
     type: "GET",
     contentType: 'application/json; charset=utf-8',
     success: function(reportServer) {
@@ -70,15 +78,13 @@ function llenarReportes(){
           var fecha = (myObj[i].fecha).substring(0,10);
           document.getElementById("newReport").innerHTML += "<tr>"+
           "<td value='"+ i +"'>"+(i+1)+"</td>"+
-          "<td value='"+ i +"'>"+"<img src= 'data:image/jpeg;base64," + imagen + "'/>"+"</td>"+
+          "<td value='"+ i +"'>"+"<img  width='15' height='30' src= 'data:image/jpeg;base64," + imagen + "' onclick='imgFunction(src)' id='myImg'/>"+"</td>"+
           "<td value='"+ i +"'>"+tipoReporte+"</td>"+
           "<td value='"+ i +"'>"+comentario+"</td>"+
           "<td value='"+ i +"'>"+status+"</td>"+
           "<td value='"+ i +"'>"+fecha+"</td>"+
-          "<td value='"+ i +"'>"+"<button type='button' class='btn btn-success'>Success</button>"+"</td>"+
+          "<td value='"+ i +"'>"+"<button type='button' onclick='buttonFunction(id)' id='"+id+"' class='btn btn-success'>Success</button>"+"</td>"+
           "</tr>"; 
-
-
       }   
     },
     error : function(jqXHR, textStatus, errorThrown) {
@@ -88,9 +94,26 @@ function llenarReportes(){
   });
 }
 
+function buttonFunction(id) {
+  alert(id);
+}
+function imgFunction(src) {
+  var modal = document.getElementById('myModal');
+  var modalImg = document.getElementById("img01");
+  var captionText = document.getElementById("caption");
+   
+  modal.style.display = "block";
+  modalImg.src = src;
+  captionText.innerHTML = this.alt;
+
+  var span = document.getElementsByClassName("close")[0];
+  span.onclick = function() { 
+    modal.style.display = "none";
+  }
+}
+
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 </html>
     
