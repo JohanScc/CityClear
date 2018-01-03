@@ -53,6 +53,13 @@ exports.validate_exist_user = function(req, res) {
   });
 };*/
 
+exports.delete_all_user = function(req, res) {
+  Usuario.remove(function(err, usuario) {
+    if (err)
+      res.send(err);
+    res.json({ message: 'Reporte successfully deleted' });
+  });
+}; 
 
 exports.delete_a_user = function(req, res) {
   Usuario.remove({

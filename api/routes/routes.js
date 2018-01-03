@@ -32,6 +32,7 @@ module.exports = function(app) {
      // User Routes
   app.route('/user')
     .get(usuarioRoute.list_all_user)
+    .delete(usuarioRoute.delete_all_user)
     .post(usuarioRoute.create_a_user);
 
 
