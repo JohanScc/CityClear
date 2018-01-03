@@ -24,8 +24,8 @@ exports.create_a_user = function(req, res) {
       user = true;
   	}
   });
-  if(user == false){
-  	res.send('false');
+  if(user == true){
+  	res.send('0');
   }else{
 	  var new_user = new Usuario(req.body);
 	  new_user.save(function(err, usuario) {
