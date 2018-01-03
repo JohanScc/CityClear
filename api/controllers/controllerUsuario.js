@@ -18,22 +18,22 @@ exports.create_a_user = function(req, res) {
   //console.log(req.body.email);
   Usuario.find({email:req.body.email}, function(err, usuario) {
     if (err){
-      user = false;
+      res.send(err);
     }
-  	else{
-      user = true;
-  	}
+      user = usuario;
+	  if(user.length === 0){
+		var new_user = new Usuario(req.body);
+		new_user.save(function(err, usuario) {
+		  	if (err)
+		      res.send(err);
+		    res.json(usuario);
+		});
+	  	
+	  }else{
+	  	res.send("user exist");
+	  }
+  	
   });
-  if(user == true){
-  	res.send('0');
-  }else{
-	  var new_user = new Usuario(req.body);
-	  new_user.save(function(err, usuario) {
-	    if (err)
-	      res.send(err);
-	    res.json(usuario);
-	  });
-  }
 };
 
 

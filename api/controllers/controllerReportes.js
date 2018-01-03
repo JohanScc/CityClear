@@ -2,7 +2,8 @@
 
 
 var mongoose = require('mongoose'),
-Reporte = mongoose.model('Reporte');
+Reporte = mongoose.model('Reporte'),
+Usuario = mongoose.model('Usuario');
 
 exports.list_all_report = function(req, res) {
   Reporte.find({}, function(err, reporte) {
@@ -13,12 +14,30 @@ exports.list_all_report = function(req, res) {
 };
 
 exports.create_a_report = function(req, res) {
-  var new_reporte = new Reporte(req.body);
-  new_reporte.save(function(err, reporte) {
-    if (err)
+  var user;	
+  Usuario.find({_id:req.body.usuario}, function(err, usuario) {
+    if (err){
       res.send(err);
-    res.json(reporte);
+    }
+    else{
+	    user = usuario;
+		if(user.length === 0){
+		  res.send("user not exist");
+		  	
+		}else{
+		  var new_reporte = new Reporte(req.body);
+	  	  new_reporte.save(function(err, reporte) {
+		      if (err)
+		       	 res.send(err);
+		      res.json(reporte);
+		  });
+		  	
+		}
+	}
+  	
   });
+
+  
 };
 
 
