@@ -77,9 +77,3 @@ var reporteSchema = new Schema({
   } 
 });
 module.exports = mongoose.model('Reporte', reporteSchema);
- },
-  usuario: { 
-    type: Schema.ObjectId, 
-    ref: "Usuario",
-    required: true 
-  } 
