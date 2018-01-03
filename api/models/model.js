@@ -69,12 +69,17 @@ var reporteSchema = new Schema({
       enum: ['pending', 'ongoing', 'completed']
     }],
     default: ['pending']
-  }
+  },
+  usuario: { 
+    type: Schema.ObjectId, 
+    ref: "Usuario",
+    required: true 
+  } 
 });
 module.exports = mongoose.model('Reporte', reporteSchema);
- // },
-  // usuario: { 
-  //   type: Schema.ObjectId, 
-  //   ref: "Usuario",
-  //   required: true 
-  // } 
+ },
+  usuario: { 
+    type: Schema.ObjectId, 
+    ref: "Usuario",
+    required: true 
+  } 
