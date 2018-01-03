@@ -56,7 +56,7 @@ exports.validate_exist_user = function(req, res) {
 
 exports.delete_a_user = function(req, res) {
   Usuario.remove({
-    _id: req.params.reportId
+    _id: req.params.userId
   }, function(err, usuario) {
     if (err)
       res.send(err);
