@@ -47,8 +47,8 @@
 
 function llenarReportes(){
   $.ajax({
-    //url: "http://cityclear.herokuapp.com/user",
-    url: "http://localhost:3000/employee",
+    url: "http://cityclear.herokuapp.com/employee",
+    //url: "http://localhost:3000/employee",
     type: "GET",
     contentType: 'application/json; charset=utf-8',
     success: function(reportServer) {

@@ -126,8 +126,8 @@
 
 function llenarReportes(){
   $.ajax({
-    //url: "http://cityclear.herokuapp.com/report",
-    url: "http://localhost:3000/report",
+    url: "http://cityclear.herokuapp.com/report",
+    //url: "http://localhost:3000/report",
     type: "GET",
     contentType: 'application/json; charset=utf-8',
     success: function(reportServer) {
@@ -180,8 +180,8 @@ function buttonFunction(id) {
   $("option").remove();
   $("button[value='X']").remove();
   $.ajax({
-    //url: "http://cityclear.herokuapp.com/employee",
-    url: "http://localhost:3000/employee",
+    url: "http://cityclear.herokuapp.com/employee",
+    //url: "http://localhost:3000/employee",
     type: "GET",
     contentType: 'application/json; charset=utf-8',
     success: function(reportServer) {
@@ -209,8 +209,8 @@ function buttonFunction(id) {
 function asignarTrabajador(idReporte){
   var idTrabajador = $("#combo option:selected" ).val();
   $.ajax({
-    //url: "http://cityclear.herokuapp.com/reportEmployee/"+idReporte,
-    url: "http://localhost:3000/reportEmployee/"+idReporte,
+    url: "http://cityclear.herokuapp.com/reportEmployee/"+idReporte,
+    //url: "http://localhost:3000/reportEmployee/"+idReporte,
     type: "PUT",
     data: "status=ongoing&trabajador="+idTrabajador,
     //contentType: 'application/json; charset=utf-8',

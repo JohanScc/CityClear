@@ -64,8 +64,8 @@ function llenarReportes(){
       id = data.substr(3);
       
       $.ajax({
-        //url: "http://cityclear.herokuapp.com/reportUser/"+id,
-        url: "http://localhost:3000/reportUser/"+id,
+        url: "http://cityclear.herokuapp.com/reportUser/"+id,
+        //url: "http://localhost:3000/reportUser/"+id,
         type: "GET",
         contentType: 'application/json; charset=utf-8',
         success: function(reportServer) {
