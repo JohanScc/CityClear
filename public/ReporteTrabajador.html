@@ -89,7 +89,7 @@ function llenarReportes(){
                   if(status == "ongoing"){
                     buttonString =  "<td value='"+ i +"'>"+"<button type='button' id='"+id+"' class='btn btn-warning' data-toggle='modal' data-target='#modalOngoing'>Ongoing</button>"+"</td>";
                   }else{
-                    buttonString = "<td value='"+ i +"'>"+"<button type='button'  id='"+id+"' class='btn btn-dange' data-toggle='modal' data-target='#modalCompleted'>Completed</button>"+"</td>"; 
+                    buttonString = "<td value='"+ i +"'>"+"<button type='button'  id='"+id+"' class='btn btn-danger' data-toggle='modal' data-target='#modalCompleted'>Completed</button>"+"</td>"; 
                   }
                 }
                 document.getElementById("newTrabReport").innerHTML += "<tr>"+
