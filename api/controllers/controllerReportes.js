@@ -14,7 +14,7 @@ exports.list_all_report = function(req, res) {
 };
 
 exports.list_all_reportOfEmployee = function(req, res) {
-  Reporte.find({trabajador:req.params.reportId, status: "pending"},
+  Reporte.find({trabajador:req.params.reportId, status: "ongoing"},
   { 
   	tipoReporte: 1,
   	comentario: 1,
