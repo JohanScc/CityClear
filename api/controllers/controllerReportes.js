@@ -14,7 +14,12 @@ exports.list_all_report = function(req, res) {
 };
 
 exports.list_all_reportOfEmployee = function(req, res) {
-  Reporte.find({trabajador:req.params.reportId}, function(err, reporte) {
+  Reporte.find({trabajador:req.params.reportId, status: "pending"},
+  { 
+  	latitud: 1,
+  	longitud: 1
+  },
+   function(err, reporte) {
     if (err)
       res.send(err);
     res.json(reporte);
@@ -57,13 +62,14 @@ exports.read_a_report = function(req, res) {
 };
 
 
-/*exports.update_a_task = function(req, res) {
-  Task.findOneAndUpdate({_id: req.params.taskId}, req.body, {new: true}, function(err, task) {
+exports.update_a_report = function(req, res) {
+  Reporte.findOneAndUpdate({_id: req.params.reportId}, {status: req.body.status}, 
+  	{new: true}, function(err, reporte) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(reporte);
   });
-};*/
+};
 
 
 exports.delete_a_report = function(req, res) {

@@ -27,8 +27,9 @@ module.exports = function(app) {
 
   app.route('/report/:reportId')
     .get(reporteRoute.read_a_report)
-    .delete(reporteRoute.delete_a_report);
-    //.put(todoList.update_a_report)
+    .delete(reporteRoute.delete_a_report)
+    .put(reporteRoute.update_a_report);
+
   app.route('/reportEmployee/:reportId')
   	.get(reporteRoute.list_all_reportOfEmployee);
 
