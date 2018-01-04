@@ -58,7 +58,7 @@ exports.delete_all_user = function(req, res) {
   Usuario.remove(function(err, usuario) {
     if (err)
       res.send(err);
-    res.json({ message: 'Reporte successfully deleted' });
+    res.json({ message: 'Usuario successfully deleted' });
   });
 }; 
 
@@ -68,6 +68,6 @@ exports.delete_a_user = function(req, res) {
   }, function(err, usuario) {
     if (err)
       res.send(err);
-    res.json({ message: 'Reporte successfully deleted' });
+    res.json({ message: 'Usuario successfully deleted' });
   });
 };

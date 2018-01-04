@@ -22,6 +22,32 @@ var TaskSchema = new Schema({
 });
 module.exports = mongoose.model('Tasks', TaskSchema);
 
+var trabajadorSchema = new Schema({
+  nombre: {
+      type: String,
+      required: true
+  },
+  email: {
+      type: String,
+      required: true
+  },
+  contrasenia:{
+      type: String,
+      required: true
+  },
+  latitud: {
+      type: String
+  },
+  longitud: {
+      type: String
+  },
+  reporte: { 
+    type: Schema.ObjectId, 
+    ref: "Reporte"
+  } 
+});
+module.exports = mongoose.model('Trabajador', trabajadorSchema);
+
 var usuarioSchema = new Schema({
   nombre: {
       type: String,

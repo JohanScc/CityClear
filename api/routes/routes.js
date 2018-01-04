@@ -3,6 +3,7 @@ module.exports = function(app) {
   var todoList = require('../controllers/controller');
   var reporteRoute = require('../controllers/controllerReportes');
   var usuarioRoute = require('../controllers/controllerUsuario');
+  var trabajadorRoute = require('../controllers/controllerTrabajador');
 
 
   // todoList Routes
@@ -40,5 +41,17 @@ module.exports = function(app) {
     .get(usuarioRoute.validate_exist_user)
     .delete(usuarioRoute.delete_a_user);
     //.put(todoList.update_a_report)
+
+   // trabajador
+  app.route('/employee')
+    .get(trabajadorRoute.list_all_trabajador)
+    .delete(trabajadorRoute.delete_all_trabajador)
+    .post(trabajadorRoute.create_a_trabajador);
+
+
+  app.route('/employee/:trabajadorId')
+    .get(trabajadorRoute.validate_exist_trabajador)
+    .delete(trabajadorRoute.delete_a_trabajador);
+    //.put(todoList.update_a_report)  
 };
 
