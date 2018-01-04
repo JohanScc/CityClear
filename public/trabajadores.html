@@ -34,7 +34,7 @@
               <th scope="col">#</th>
               <th scope="col">Nombre</th>
               <th scope="col">Email</th>
-              <th scope="col">Reportes</th>
+              <th scope="col">Reportes Realizados</th>
             </tr>
           </thead>
           <tbody id="newUser">
@@ -65,7 +65,7 @@ function llenarReportes(){
           "<td value='"+ id +"'>"+(i+1)+"</td>"+
           "<td value='"+ id +"'>"+nombre+"</td>"+
           "<td value='"+ id +"'>"+email+"</td>"+
-          "<td value='"+ id +"'>"+"<button type='button' onclick='buttonFunction(id)' id='"+id+"' class='btn btn-success'>Success</button>"+"</td>"+
+          "<td value='"+ id +"'>"+"<button type='button' onclick='buttonFunction(id)' id='"+id+"' class='btn btn-link'>Abrir Reportes</button>"+"</td>"+
           "</tr>"; 
       }   
     },
@@ -77,7 +77,8 @@ function llenarReportes(){
 }
 
 function buttonFunction(id) {
-  alert(id);
+  var idTrabajador = id;
+  window.location = "ReporteTrabajador.html?id=" + idTrabajador;
 }
 
 </script>

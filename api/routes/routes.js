@@ -35,6 +35,13 @@ module.exports = function(app) {
   	.get(reporteRoute.list_all_reportOfEmployee)
   	.put(reporteRoute.update_a_reportEmployee);
 
+  app.route('/reportUser/:reportId')
+  	.get(reporteRoute.list_all_reportOfUser);
+
+  app.route('/reportEmployeeStatus/:reportId')
+  	.get(reporteRoute.list_all_reportOfEmployeeStatus);
+  	
+  	
 
      // User Routes
   app.route('/user')
