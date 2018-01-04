@@ -16,9 +16,9 @@
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="">Usuarios</a></li>
-          <li><a href="trabajadores.html">Trabajadores</a></li>
-          <li><a href="#">Administracion</a></li>
+          <li><a href="usuarios.html">Usuarios</a></li>
+          <li><a href="">Trabajadores</a></li>
+          <li><a href="">Administracion</a></li>
         </ul>
       </div>
     </nav>
@@ -26,7 +26,7 @@
     
     <div class="container">
       <div class="mt-3">
-        <h1>Usuarios City Clear</h1>
+        <h1>Trabajadores City Clear</h1>
       </div>
         <table class="table">
           <thead class="thead-dark">
@@ -34,14 +34,12 @@
               <th scope="col">#</th>
               <th scope="col">Nombre</th>
               <th scope="col">Email</th>
-              <th scope="col">Posts</th>
+              <th scope="col">Reportes</th>
             </tr>
           </thead>
           <tbody id="newUser">
           </tbody>
         </table>
-
-       
     </div>
    
 
@@ -50,7 +48,7 @@
 function llenarReportes(){
   $.ajax({
     //url: "http://cityclear.herokuapp.com/user",
-    url: "http://localhost:3000/user",
+    url: "http://localhost:3000/employee",
     type: "GET",
     contentType: 'application/json; charset=utf-8',
     success: function(reportServer) {
@@ -64,10 +62,10 @@ function llenarReportes(){
           var email = myObj[i].email;
          
           document.getElementById("newUser").innerHTML += "<tr>"+
-          "<td value='"+ i +"'>"+(i+1)+"</td>"+
-          "<td value='"+ i +"'>"+nombre+"</td>"+
-          "<td value='"+ i +"'>"+email+"</td>"+
-          "<td value='"+ i +"'>"+"<button type='button' onclick='buttonFunction(id)' id='"+id+"' class='btn btn-success'>Success</button>"+"</td>"+
+          "<td value='"+ id +"'>"+(i+1)+"</td>"+
+          "<td value='"+ id +"'>"+nombre+"</td>"+
+          "<td value='"+ id +"'>"+email+"</td>"+
+          "<td value='"+ id +"'>"+"<button type='button' onclick='buttonFunction(id)' id='"+id+"' class='btn btn-success'>Success</button>"+"</td>"+
           "</tr>"; 
       }   
     },

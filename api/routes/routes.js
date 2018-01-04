@@ -30,8 +30,10 @@ module.exports = function(app) {
     .delete(reporteRoute.delete_a_report)
     .put(reporteRoute.update_a_report);
 
+
   app.route('/reportEmployee/:reportId')
-  	.get(reporteRoute.list_all_reportOfEmployee);
+  	.get(reporteRoute.list_all_reportOfEmployee)
+  	.put(reporteRoute.update_a_reportEmployee);
 
 
      // User Routes

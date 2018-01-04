@@ -16,9 +16,9 @@
           <a class="navbar-brand" href="#">City Clear</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
+          <li class="active"><a href="">Home</a></li>
           <li><a href="usuarios.html">Usuarios</a></li>
-          <li><a href="#">Post</a></li>
+          <li><a href="trabajadores.html">Trabajadores</a></li>
           <li><a href="#">Administracion</a></li>
         </ul>
       </div>
@@ -46,11 +46,79 @@
           </tbody>
         </table>
 
-        <div id="myModal" class="modal">
+        <div id="myModal" class="modal1">
           <span class="close">&times;</span>
-          <img height="400" class="modal-content" id="img01">
+          <img height="400" class="modal-content1" id="img01">
           <div id="caption"></div>
         </div>
+    </div>
+
+    <div class="modal fade" id="modalTrabajador" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Asignar a Trabajador</h4>
+            </div>
+            <div class="modal-body">
+              <label>Seleccione Trabajador</label>
+              <select id="comboSelect"   class="form-control" >
+                <optgroup id= "combo" label="Trabajador">
+                  <option>Ninguno</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="modal-footer" id="buttonAsignar">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="modal fade" id="modalOngoing" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Ongoing Reporte</h4>
+            </div>
+            <div class="modal-body">
+              <p>El reporte ya fue asignado a un trabajador de la Municipalidad</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="modal fade" id="modalCompleted" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Completed Reporte</h4>
+            </div>
+            <div class="modal-body">
+              <p>El reporte ya fue completado</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
     </div>
    
 
@@ -76,6 +144,16 @@ function llenarReportes(){
           var longitud = myObj[i].longitud;
           var status = myObj[i].status;
           var fecha = (myObj[i].fecha).substring(0,10);
+          var buttonString;
+          if(status == "pending"){
+            buttonString =  "<td value='"+ i +"'>"+"<button type='button' onclick='buttonFunction(id)' id='"+id+"' class='btn btn-success' data-toggle='modal' data-target='#modalTrabajador'>Pending</button>"+"</td>"; 
+          }else{
+            if(status == "ongoing"){
+              buttonString =  "<td value='"+ i +"'>"+"<button type='button' id='"+id+"' class='btn btn-warning' data-toggle='modal' data-target='#modalOngoing'>Ongoing</button>"+"</td>";
+            }else{
+              buttonString = "<td value='"+ i +"'>"+"<button type='button'  id='"+id+"' class='btn btn-dange' data-toggle='modal' data-target='#modalCompleted'>Completed</button>"+"</td>"; 
+            }
+          }
           document.getElementById("newReport").innerHTML += "<tr>"+
           "<td value='"+ i +"'>"+(i+1)+"</td>"+
           "<td value='"+ i +"'>"+"<img  width='15' height='30' src= 'data:image/jpeg;base64," + imagen + "' onclick='imgFunction(src)' id='myImg'/>"+"</td>"+
@@ -83,8 +161,10 @@ function llenarReportes(){
           "<td value='"+ i +"'>"+comentario+"</td>"+
           "<td value='"+ i +"'>"+status+"</td>"+
           "<td value='"+ i +"'>"+fecha+"</td>"+
-          "<td value='"+ i +"'>"+"<button type='button' onclick='buttonFunction(id)' id='"+id+"' class='btn btn-success'>Success</button>"+"</td>"+
-          "</tr>"; 
+          buttonString+"</tr>";
+          buttonString = "";
+
+         
       }   
     },
     error : function(jqXHR, textStatus, errorThrown) {
@@ -95,7 +175,55 @@ function llenarReportes(){
 }
 
 function buttonFunction(id) {
-  alert(id);
+
+  var idReporte = id;
+  $("option").remove();
+  $("button[value='X']").remove();
+  $.ajax({
+    //url: "http://cityclear.herokuapp.com/employee",
+    url: "http://localhost:3000/employee",
+    type: "GET",
+    contentType: 'application/json; charset=utf-8',
+    success: function(reportServer) {
+      console.log(reportServer);
+      var myJson = JSON.stringify(reportServer);
+      var myObj = JSON.parse(myJson);
+          
+      for (i = 0; i < myObj.length; i++) {
+          var id = myObj[i]._id;
+          var nombre = myObj[i].nombre;           
+          var email = myObj[i].email;
+          document.getElementById("combo").innerHTML += 
+          "<option value='"+id+"'>"+email+"</option>"; 
+      } 
+      
+      document.getElementById("buttonAsignar").innerHTML +=   
+      "<button type='button' value='X' class='btn btn-success' onclick='asignarTrabajador(id)' id='"+idReporte+"' data-dismiss='modal'>Asignar Trabajador</button>";
+    },
+    error : function(jqXHR, textStatus, errorThrown) {
+      console.log("Error conexion server");
+    },
+    timeout: 5000,
+  });
+}
+function asignarTrabajador(idReporte){
+  var idTrabajador = $("#combo option:selected" ).val();
+  $.ajax({
+    //url: "http://cityclear.herokuapp.com/reportEmployee/"+idReporte,
+    url: "http://localhost:3000/reportEmployee/"+idReporte,
+    type: "PUT",
+    data: "status=ongoing&trabajador="+idTrabajador,
+    //contentType: 'application/json; charset=utf-8',
+    success: function(reportServer) {
+      alert("Asignacion Correcta");
+    },
+    error : function(jqXHR, textStatus, errorThrown) {
+      alert("Asignacion Incorrecta");
+      console.log("Error conexion server");
+    },
+    timeout: 5000,
+  });
+  
 }
 function imgFunction(src) {
   var modal = document.getElementById('myModal');

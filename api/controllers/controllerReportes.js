@@ -73,6 +73,19 @@ exports.update_a_report = function(req, res) {
   });
 };
 
+exports.update_a_reportEmployee = function(req, res) {
+  Reporte.findOneAndUpdate({_id: req.params.reportId},
+   {
+   	status: req.body.status,
+   	trabajador: req.body.trabajador
+   }, 
+  	{new: true}, function(err, reporte) {
+    if (err)
+      res.send(err);
+    res.json(reporte);
+  });
+};
+
 
 exports.delete_a_report = function(req, res) {
   Reporte.remove({
