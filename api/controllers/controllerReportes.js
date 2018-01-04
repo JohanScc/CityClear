@@ -13,6 +13,13 @@ exports.list_all_report = function(req, res) {
   });
 };
 
+exports.list_all_reportOfEmployee = function(req, res) {
+  Reporte.find({trabajador:req.params.reportId}, function(err, reporte) {
+    if (err)
+      res.send(err);
+    res.json(reporte);
+  });
+};
 exports.create_a_report = function(req, res) {
   var user;	
   Usuario.find({_id:req.body.usuario}, function(err, usuario) {

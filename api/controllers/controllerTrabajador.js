@@ -13,6 +13,7 @@ exports.list_all_trabajador = function(req, res) {
   });
 };
 
+
 exports.create_a_trabajador  = function(req, res) {
   var user;
   //console.log(req.body.email);

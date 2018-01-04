@@ -100,6 +100,10 @@ var reporteSchema = new Schema({
     type: Schema.ObjectId, 
     ref: "Usuario",
     required: true 
-  } 
+  },
+  trabajador: { 
+    type: Schema.ObjectId, 
+    ref: "Trabajador"
+  }  
 });
 module.exports = mongoose.model('Reporte', reporteSchema);
